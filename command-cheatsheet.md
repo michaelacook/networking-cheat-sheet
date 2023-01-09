@@ -1,7 +1,9 @@
 # CCNA Routing & Switching Commands Cheat Sheet
 
 ## Table of contents
-  - [Show Commands](#show-commands)
+- [CCNA Routing \& Switching Commands Cheat Sheet](#ccna-routing--switching-commands-cheat-sheet)
+  - [Table of contents](#table-of-contents)
+  - [General Show Commands](#general-show-commands)
   - [Basic Configuration](#basic-configuration)
   - [VLAN](#vlan)
     - [Trunking](#trunking)
@@ -296,6 +298,29 @@ show spanning-tree root
 
 # display STP information abou the specified interface - role, status, priority, cost
 show spanning-tree interface [int name/number]
+```
+
+Enable Multiple Spanning Tree Protocol
+
+```
+(config)# spanning-tree mode mst
+```
+
+MST basic configuration
+
+```
+(config)# spanning-tree mst configuration
+(config-mst)# name [name]
+(config-mst)# revision [revision number]
+
+# map VLANs to the instance
+(config-mst)# instance [instance ID] vlan [vlan1[,vlan2,...,vlanN]]
+
+# verify
+(config-mst)# show pending
+
+# commit changes 
+(config-mst)# exit
 ```
 
 [Back to top](#table-of-contents)
