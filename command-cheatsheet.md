@@ -9,6 +9,8 @@
     - [Trunking](#trunking)
     - [VTP](#vtp)
   - [Spanning Tree Protocol Configuration](#spanning-tree-protocol-configuration)
+    - [Rapid Spanning Tree Protocol](#rapid-spanning-tree-protocol)
+    - [Multiple Spanning Tree Protocol](#multiple-spanning-tree-protocol)
   - [Etherchannel](#etherchannel)
   - [Routing](#routing)
     - [Static Routing](#static-routing)
@@ -299,6 +301,27 @@ show spanning-tree root
 # display STP information abou the specified interface - role, status, priority, cost
 show spanning-tree interface [int name/number]
 ```
+### Rapid Spanning Tree Protocol
+
+Enable Rapid Spanning Tree Protocol
+
+```
+(config)# spanning-tree mode rapid-pvst
+```
+
+Configure switch as RST root primary for a VLAN
+
+```
+(config)# spanning-tree vlan [vlan number] root primary
+```
+
+Configure switch as RST root secondary for a VLAN
+
+```
+(config)# spanning-tree vlan [vlan number] root secondary
+```
+
+### Multiple Spanning Tree Protocol
 
 Enable Multiple Spanning Tree Protocol
 
