@@ -11,6 +11,7 @@
   - [Spanning Tree Protocol Configuration](#spanning-tree-protocol-configuration)
     - [Rapid Spanning Tree Protocol](#rapid-spanning-tree-protocol)
     - [Multiple Spanning Tree Protocol](#multiple-spanning-tree-protocol)
+  - [Switch Security](#switch-security)
   - [Etherchannel](#etherchannel)
   - [Routing](#routing)
     - [Static Routing](#static-routing)
@@ -273,6 +274,9 @@ Configure PortFast on a port
 ```
 (config-if)# spanning-tree portfast
 (config-if)# spanning-tree bpduguard [enable|disable] // if using BPDU Guard with PortFast
+
+# enable BPDU Guard globally on all ports running PortFast
+(config)# spanning-tree portfast bpduguard default
 ```
 
 Configure Root Guard on a port 
@@ -285,6 +289,55 @@ Modify timer
 
 ```
 (config)# spanning-tree vlan [vlan number] [hello-time|max-Age|forward-Time] [value]
+```
+
+Enable BackboneFast
+
+```
+# should be enabled for all switches in topology
+
+(config)# spanning-tree backbonefast
+```
+
+Enable UplinkFast
+
+```
+# use on non-root access layer switches
+# configured for all vlans
+
+(config)# spanning-tree uplinkfast
+```
+
+Enable Loop Guard
+
+```
+# enable on all switches and ports
+(config)# spanning-tree loopguard default
+
+# enable on a specific interface
+(config-if)# spanning-tree guard loop
+```
+
+Enable UDLD
+
+```
+(config-if)# udld [enable|aggressive|disable]
+```
+
+Enable BPDU filtering
+
+```
+# globally
+(config)# spanning-tree portfast bpdufilter default
+
+# per port
+(config-if)# spanning-tree bpdufilter enable
+```
+
+Set STP link type
+
+```
+(config-if)# spanning-tree link-type [point-to-point|shared]
 ```
 
 Spanning Tree show commands 
@@ -300,7 +353,21 @@ show spanning-tree root
 
 # display STP information abou the specified interface - role, status, priority, cost
 show spanning-tree interface [int name/number]
+
+# display disabled ports
+show spanning-tree inconsistentports
 ```
+
+Enable Storm Control
+
+```
+# enable storm control based on traffic type and level
+(config-if)# storm-control [broadcast|multicast|unicast] [level|bps|pps]
+
+# specify action when storm control rule is violated
+(config-if)# storm-control action [shutdown|trap]
+```
+
 ### Rapid Spanning Tree Protocol
 
 Enable Rapid Spanning Tree Protocol
@@ -344,6 +411,35 @@ MST basic configuration
 
 # commit changes 
 (config-mst)# exit
+```
+
+## Switch Security
+
+Configure 802.1X port-based authentication
+
+```
+# enable AAA auth
+(config)# aaa new-model
+
+# define RADIUS server(s)
+(config)# radius-server host [name/IP] key BigSecret
+
+# define 802.1x auth method
+(config)# aaa authentication dot1x default group radius
+
+# enable 802.1x on the switch
+(config)# dot1x system-auth-control
+
+# enter ports to use authentication
+(config)# int range [interface range]
+
+# configure ports to use 802.1x
+(config-if)# switchport access vlan [vlan number]
+(config-if)# switchport mode access
+(config-if)# dot1x port-control [auto|force-authorized|force-unauthorized]
+
+# allow multiple hosts to access the port where required
+(config-if)# dot1x host-mode multi-host
 ```
 
 [Back to top](#table-of-contents)
