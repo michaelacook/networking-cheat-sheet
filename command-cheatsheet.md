@@ -272,7 +272,7 @@ Configure PortFast on a port
 
 ```
 (config-if)# spanning-tree portfast
-(config-if)# spanning-tree bpduguard // if using BPDU Guard with PortFast
+(config-if)# spanning-tree bpduguard [enable|disable] // if using BPDU Guard with PortFast
 ```
 
 Configure Root Guard on a port 
