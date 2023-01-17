@@ -583,7 +583,7 @@ Activate EIGRP on a router:
 Assign a router ID
 
 ```
-eigrp router-id [IPv4 address]
+eigrp router-id [x.x.x.x]
 
 # Then configure networks to advertise
 ```
