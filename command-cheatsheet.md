@@ -580,6 +580,19 @@ Activate EIGRP on a router:
 (config-router)# router eigrp [autonomous system number]
 ```
 
+Activate EIGRP IPv6
+
+```
+(config-router)# ipv6 router eigrp [AS]
+```
+
+Configure IPv6 EIGRP on an interface
+
+```
+(config-if)# ipv6 eigrp [AS]
+(config-if)# no shutdown
+```
+
 Assign a router ID
 
 ```
@@ -630,6 +643,12 @@ Show topology table - including successor routes
 # show ip eigrp topology
 ```
 
+Show all routes include those that are not successor or feasible successor
+
+```
+# show ip eigrp topology all-links
+```
+
 Configure unequal cost load balancing 
 
 ```
@@ -674,6 +693,78 @@ Configure router as stub router
 
 ```
 (config-router)# eigrp stub [?]
+```
+
+Change EIGRP K values
+
+```
+(config-router)# metric weights [tos=0] [k1] [k2] [k3] [k4] [k5]
+```
+
+Configure load sharing
+
+```
+(config-router)# maximum-paths [number]
+```
+
+Change active timer 
+
+```
+(config-router)# active-time [time]
+```
+
+Disable split horizon on a hub router
+
+```
+(config-if)# no ip split-horizon eigrp [AS number]
+```
+
+Configure bandwidth for EIGRP updates
+
+```
+(config)# interface [int.subint] [multipoint|point-to-point]
+(config-subif)# ip bandwidth-percent eigrp [AS num] [%]
+```
+
+Create an offset list
+
+```
+(config)# access-list [num] permit [IP]
+(config)# router eigrp [AS]
+(config-router)# offset-list [acl num] [in|out] [offset value]
+```
+
+Configure route filtering
+
+```
+# create a deny acl
+(config)# access-list [number] [permit|deny] [subnet] [inverse mask]
+
+# apply filtering in EIGRP config
+(config)# router eigrp [AS]
+(config-router)# distribute-list [acl number] [in|out]
+```
+
+Create a static default route and inject into EIGRP
+
+```
+(config)# ip route 0.0.0.0 0.0.0.0 [next hop IP|exit interface]
+(config)# redistribute static
+```
+
+Configure Named EIGRP
+
+```
+(config)# router eigrp [name]
+(config-router)# address-family [family] autonomous-system [AS]
+(config-router-af)# network [network eg. 0.0.0.0]
+```
+
+Enter and exit toplogy configuration
+
+```
+# this may not be the correct exec level - double check
+(config)# topology base
 ```
 
 [Back to top](#table-of-contents)
