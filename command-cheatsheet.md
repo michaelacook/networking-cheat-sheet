@@ -1,4 +1,4 @@
-# CCNA Routing & Switching Commands Cheat Sheet
+ Routing & Switching Commands Cheat Sheet
 
 ## Table of contents
 - [CCNA Routing \& Switching Commands Cheat Sheet](#ccna-routing--switching-commands-cheat-sheet)
@@ -852,10 +852,22 @@ Summarize routes on Area Border Router
 (config-router)# area [area number] range [subnet of summarized routes] [subnet mask of summarized route] [cost [num]]
 ```
 
+Summarize routes redistributed into OSPF on an ASBR
+
+```
+(router-config)# summary-address [subnet & mask]
+```
+
 View details & cost of summary route
 
 ```
 # show ip ospf database summary [subnet]
+```
+
+Create a default route on the ASBR
+
+```
+(config-router)# default-information originate always [metric {value}] [metric-type {type}] [route-map {name}]
 ```
 
 Configure stub area
@@ -871,6 +883,18 @@ Configure total stub area
 ```
 (config)# router ospf [process number]
 (config-router)# area [area number] stub no-summary
+```
+
+View default routes known on a router
+
+```
+# show ip ospf database summary 0.0.0.0
+```
+
+View statistics on types of LSAs received
+
+```
+# show ip ospf database database-summary
 ```
 
 Configure passive interface
@@ -912,6 +936,24 @@ Configure OSPF cost directly
 
 ```
 (config-if)# ip ospf cost [value]
+```
+
+OSPFv3 Configuration
+
+```
+(config)# ipv6 unicast-routing
+(config# ipv6 router ospf [ID]
+(config-router)# router-id [x.x.x.x]
+
+# advertise
+(config-router)# ipv6 ospf [process ID] area [number] 
+```
+
+Verify OSPFv3 configuration
+
+```
+# show ipv6 ospf interface brief
+# show ipv6 ospf neighbor
 ```
 
 [Back to top](#table-of-contents)
