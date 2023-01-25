@@ -771,6 +771,12 @@ Enter and exit toplogy configuration
 
 #### OSPF
 
+View OSPF instance
+
+```
+# show ip ospf
+```
+
 Configure an OSPF instance on a router
 - requires setting a router id, as in EIGRP
 
@@ -797,6 +803,12 @@ Change reference bandwidth
 
 ```
 (config-router)# auto-cost reference-bandwidth [number]
+```
+
+Change interface bandwidth
+
+```
+(config-if)# bandwidth [num]
 ```
 
 Change hello & dead timers
@@ -837,7 +849,13 @@ show ip route ospf
 Summarize routes on Area Border Router
 
 ```
-(config-router)# area [area number] range [subnet of summarized routes] [subnet mask of summarized route]
+(config-router)# area [area number] range [subnet of summarized routes] [subnet mask of summarized route] [cost [num]]
+```
+
+View details & cost of summary route
+
+```
+# show ip ospf database summary [subnet]
 ```
 
 Configure stub area
@@ -874,6 +892,26 @@ Configure virtual link
 ```
 (config)# router ospf [process number]
 (config-router)# area [transit area number] [peer/destination router ID]
+```
+
+View OSPF cost
+
+```
+# show ip ospf interface brief
+# show ip ospf interface [type/num]
+```
+
+Filter Type 3 LSAs on ABR
+
+```
+(config)# router ospf [AS]
+(router-config)$ area [number] filter-list prefix name [in|out]
+```
+
+Configure OSPF cost directly
+
+```
+(config-if)# ip ospf cost [value]
 ```
 
 [Back to top](#table-of-contents)
