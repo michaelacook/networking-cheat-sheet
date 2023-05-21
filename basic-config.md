@@ -12,8 +12,9 @@ Secure user EXEC mode.
 
 ```
 (config)# line console 0
-(config)# password password
-(config)# login
+(config-line)# password password
+(config-line)# login
+(config-line)# logging synchronous
 ```
 
 Secure remote Telnet / SSH access.
@@ -22,6 +23,7 @@ Secure remote Telnet / SSH access.
 (config)# line vty 0 15
 (config-line)# password password
 (config-line)# login
+(config-line)# transport input {ssh | telnet | none | all}
 ```
 
 Secure privileged EXEC mode.
