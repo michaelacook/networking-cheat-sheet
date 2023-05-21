@@ -100,6 +100,18 @@ wr
 
 [Back to top](#table-of-contents)
 
+## Switch Virtual Interface
+- used for remote management of the device
+
+```
+# conf t
+(config)# int vlan 1
+(config-if)# ip address ip mask
+(config-if)# no shut
+(config-if)# exit
+(config)# ip default-gateway ip
+```
+
 ## VLAN
 Create a vlan 
 
