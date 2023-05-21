@@ -39,6 +39,9 @@
 
 ```show ip protocols```
 
+```show line```
+- to view parameters for active lines that are in use such as the vty lines
+
 [Back to top](#table-of-contents)
 
 ## Basic Configuration
