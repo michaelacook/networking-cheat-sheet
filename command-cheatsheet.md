@@ -284,13 +284,29 @@ Change port cost
 (config-if)# spanning-tree vlan [vlan number] cost [cost]
 ```
 
-Configure PortFast on a port 
+Change port priority
 
 ```
+(config-if)# spanning-tree vlan [vlan id] cost [cost between 1-200000000]
+```
+
+Configure PortFast
+
+```
+# on an interface
 (config-if)# spanning-tree portfast
 (config-if)# spanning-tree bpduguard [enable|disable] // if using BPDU Guard with PortFast
 
-# enable BPDU Guard globally on all ports running PortFast
+# globally on all access ports running PortFast
+(config)# spanning-tree portfast bpduguard default
+```
+
+Configure BPDU Guard
+```
+# On an interface
+(config-if)# spanning-tree bpduguard enable
+
+# Globally
 (config)# spanning-tree portfast bpduguard default
 ```
 
@@ -383,7 +399,7 @@ Enable Storm Control
 (config-if)# storm-control action [shutdown|trap]
 ```
 
-### Rapid Spanning Tree Protocol
+### Rapid PVST
 
 Enable Rapid Spanning Tree Protocol
 
