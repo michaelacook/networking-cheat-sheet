@@ -308,6 +308,9 @@ Configure BPDU Guard
 
 # Globally
 (config)# spanning-tree portfast bpduguard default
+
+# Disable BPDU Guard on an interface
+(config-if)# spanning-tree bpduguard disable
 ```
 
 Configure Root Guard on a port 
