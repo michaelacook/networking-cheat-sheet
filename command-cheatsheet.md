@@ -313,6 +313,19 @@ Configure BPDU Guard
 (config-if)# spanning-tree bpduguard disable
 ```
 
+Configure BPDU Filter
+
+```
+# Globally on all PortFast-enabled ports
+(config)# spanning-tree portfast bpdufilter default
+
+# On an interface
+(config-if)# spanning-tree bpdufilter enable
+
+# Disable BPDU Filter on an interface
+(config-if)# spanning-tree bpdufilter disable
+```
+
 Configure Root Guard on a port 
 
 ```
