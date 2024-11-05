@@ -278,16 +278,16 @@ Configure switch as root secondary
 (config)# spanning-tree vlan [vlan #] root secondary
 ```
 
-Change port cost 
-
-```
-(config-if)# spanning-tree vlan [vlan number] cost [cost]
-```
-
-Change port priority
+Change port cost
 
 ```
 (config-if)# spanning-tree vlan [vlan id] cost [cost between 1-200000000]
+```
+
+Configure port priority
+
+```
+(config-if)# spanning-tree vlan [vlan id] port-priority [priority]
 ```
 
 Configure PortFast
