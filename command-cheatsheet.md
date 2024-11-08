@@ -492,21 +492,57 @@ Configure 802.1X port-based authentication
 [Back to top](#table-of-contents)
 
 ## Etherchannel
-Aggregate a range of ports as an etherchannel 
+Aggregate a range of ports as a PAgP etherchannel 
 
 ```
 (config-if-range)# shutdown 
-(config-if-range)# channel-group [number] mode [active|passive|desirable|auto]
+(config-if-range)# channel-group [number] mode [desirable|auto]
 (config-if-range)# no shutdown
 ```
 
-Verify an etherchannel 
+Aggregate a range of ports as an LACP etherchannel
+```
+(config-if-range)# shutdown 
+(config-if-range)# channel-group [number] mode [active|passive]
+(config-if-range)# no shutdown
+```
+
+Aggregate a range of ports as a static etherchannel
+```
+# staticly configured port channels cannot form an etherchannel with PAgP or LACP port channels
+
+(config-if-range)# shutdown 
+(config-if-range)# channel-group [number] mode on
+(config-if-range)# no shutdown
+```
+
+Manually configure the negotiation protocol 
 
 ```
-# port channel should be SU (layer 2 and up)
-# should have individual link status of P for bundled in the Port Channel
+(config-if-range)# channel-protocol [lacp|pagp]
+```
 
-show etherchannel summary
+Display a summary of EtherChannels on the switch
+
+```
+# show etherchannel summary
+```
+
+Display information about the virtual port-channel interfaces on the switch
+```
+# show etherchannel port-channel
+```
+
+View the etherchannel load balancing method 
+
+```
+# show etherchannel load-balance
+```
+
+Modify the etherchannel load balancing method
+
+```
+(config)# port-channel load-balance [method]
 ```
 
 [Back to top](#table-of-contents)
