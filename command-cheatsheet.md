@@ -19,6 +19,9 @@
       - [RIP](#rip)
       - [EIGRP](#eigrp)
       - [OSPF](#ospf)
+  - [IP Services](#ip-services)
+    - [DNS](#dns)
+    - [DHCP](#dhcp)
 
 ## General Show Commands 
 ```show running-config```
@@ -1037,6 +1040,68 @@ Verify OSPFv3 configuration
 ```
 # show ipv6 ospf interface brief
 # show ipv6 ospf neighbor
+```
+
+[Back to top](#table-of-contents)
+
+## IP Services
+
+### DNS
+
+### DHCP
+
+View current DHCP leases
+
+```
+# show ip dhcp binding
+```
+
+Create a DHCP pool 
+
+```
+ip dhcp pool {poolname}
+```
+
+Specify a subnet of addresses to be assigned 
+
+```
+(dhcp-config)# network {network} {/prefix|netmask}
+```
+
+Specify DNS server option
+
+```
+(dhcp-config)# dns-server {address}
+```
+
+Specify default gateway option 
+
+```
+(dhcp-config)# default-router {address}
+```
+
+Specify domain name option 
+
+```
+(dhcp-config)# domain-name {domain name}
+```
+
+Specify lease time 
+
+```
+(dhcp-config)# lease {days hours minutes|lease infinite}
+```
+
+Specify address exclusion range 
+
+```
+(config)# ip dhcp excluded-address {start} {end}
+```
+
+Configure a routed interface as a DHCP client 
+
+```
+(config-if)# ip address dhcp
 ```
 
 [Back to top](#table-of-contents)
