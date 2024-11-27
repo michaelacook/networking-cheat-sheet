@@ -22,6 +22,7 @@
   - [IP Services](#ip-services)
     - [DNS](#dns)
     - [DHCP](#dhcp)
+    - [SSH](#ssh)
 
 ## General Show Commands 
 ```show running-config```
@@ -872,6 +873,13 @@ Configure an OSPF instance on a router
 (config-router)# router-id [x.x.x.x]
 ```
 
+Configure OSPF on an individual interface
+
+```
+(config)# int {int ID}
+(config-if)# ip ospf {process ID} area {area}
+```
+
 Advertise a network to an OSPF area
 
 ```
@@ -888,13 +896,13 @@ Remove OSPF process
 Change reference bandwidth
 
 ```
-(config-router)# auto-cost reference-bandwidth [number]
+(config-router)# auto-cost reference-bandwidth {mbps}
 ```
 
 Change interface bandwidth
 
 ```
-(config-if)# bandwidth [num]
+(config-if)# bandwidth {kbps}
 ```
 
 Change hello & dead timers
@@ -911,10 +919,29 @@ Show Link State Database
 show ip ospf database
 ```
 
+Show OSPF configuration on an interface
+
+```
+# show ip ospf interface {interface ID}
+```
+
 Show OSPF neighbors for a router
 
 ```
 show ip ospf neighbor
+```
+
+Configure passive interface(s)
+
+```
+# all interfaces
+(config-router)# passive-interface default\
+
+# remove passve interface
+(config-router)# no passive-interface {int ID}
+
+# specify an individual passive interface
+(config-router)# passive-interface {int ID}
 ```
 
 Show routing protocols
@@ -1103,5 +1130,9 @@ Configure a routed interface as a DHCP client
 ```
 (config-if)# ip address dhcp
 ```
+
+[Back to top](#table-of-contents)
+
+### SSH
 
 [Back to top](#table-of-contents)
