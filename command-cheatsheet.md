@@ -23,6 +23,7 @@
     - [DNS](#dns)
     - [DHCP](#dhcp)
     - [SSH](#ssh)
+    - [NTP](#ntp)
 
 ## General Show Commands 
 ```show running-config```
@@ -1134,5 +1135,113 @@ Configure a routed interface as a DHCP client
 [Back to top](#table-of-contents)
 
 ### SSH
+
+[Back to top](#table-of-contents)
+
+### NTP
+
+View the date and time and time+source
+
+```
+#show clock
+
+#show clock detail
+```
+
+View NTP servers configured for a device
+
+```
+#show ntp associations
+```
+
+View NTP status
+
+```
+#show ntp status
+```
+
+Manually configure date and time; `clock` for software, `calendar` for hardware
+
+```
+#clock set {hh:mm:ss day month year}
+
+#calendar set {hh:mm:ss day month year}
+
+e.g.
+#clock set 14:30:00 27 Nov 2024
+```
+
+Sync clock to calendar and calendar to clock
+
+```
+#clock update-calendar
+
+#clock read-calendar
+```
+
+Set timezone
+
+```
+(config)#clock timezone {timezone name} {hours offset from UTC} [minutes offset from UTC]
+```
+
+Set Daylight Savings Time 
+
+```
+(config)#clock summer-time recurring {name} {start} {end} {offset}
+
+e.g.
+(config)#clock summer-time EDT recurring 2 Sunday March 02:00 1 Sunday November 2:00
+```
+
+Configure device as an NTP server client
+
+```
+(config)#ntp server {server IP} [prefer]
+```
+
+Configure a device as an NTP server
+
+```
+(config)#interface loopback {loopback ID}
+(config-if)#ip address {address} {mask}
+(config-if)#exit
+(config)#ntp source loopback{loopback ID}
+```
+
+Configure a device as an NTP master clock
+
+```
+(config)#ntp master [stratum number]
+```
+
+Configure a device in symmetric active mode
+
+```
+(config)#ntp peer {ip}
+```
+
+Configure NTP authentication: server
+
+```
+(config)#ntp authentication-key {key number} md5 {key}
+(config)#ntp trusted-key {key number}
+```
+
+Configure NTP authentication: client
+
+```
+(config)#ntp authenticate
+(config)#ntp authentication-key {key number} md5 {key}
+(config)#ntp trusted-key {key number}
+(config)#ntp server {IP} key {key number}
+(config)#ntp peer {IP} key {key number}
+```
+
+Configure NTP to update the hardware calendar
+
+```
+(config)#ntp update-calendar
+```
 
 [Back to top](#table-of-contents)
